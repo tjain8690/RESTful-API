@@ -1,0 +1,13 @@
+package main
+
+import (
+    "net/http"
+    "your-project-name/handlers"
+    "your-project-name/utils"
+)
+
+func main() {
+    // Register the task handlers
+    http.HandleFunc("/tasks", utils.AuthenticateMiddleware(handlers.CreateTask)).Methods("POST")
+    http.HandleFunc("/tasks", utils.AuthenticateMiddleware(handlers.GetTasks)).Methods("GET")
+    http.HandleFunc("/tasks/{id}", utils.AuthenticateMiddleware(handlers.GetTaskByID)).Methods
